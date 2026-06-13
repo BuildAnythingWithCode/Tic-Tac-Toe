@@ -10,16 +10,21 @@
     <h1>Welcome to Tic Tac Toe!</h1>
     <h2>Take turns playing against each other.</h2>
     <div id="grid">
-      <div class="cell cell-one">1</div>
-      <div class="cell cell-two">2</div>
-      <div class="cell cell-three">3</div>
-      <div class="cell cell-four">4</div>
-      <div class="cell cell-five">5</div>
-      <div class="cell cell-six">6</div>
-      <div class="cell cell-seven">7</div>
-      <div class="cell cell-eight">8</div>
-      <div class="cell cell-nine">9</div>
+      <div class="cell cell-one"></div>
+      <div class="cell cell-two"></div>
+      <div class="cell cell-three"></div>
+      <div class="cell cell-four"></div>
+      <div class="cell cell-five"></div>
+      <div class="cell cell-six"></div>
+      <div class="cell cell-seven"></div>
+      <div class="cell cell-eight"></div>
+      <div class="cell cell-nine"></div>
     </div>
+    <p>It is currently Player <span id="whos-turn-is-it">1</span>'s turn.</p>
+    <p id="message-section"></p>
+    <p>Player 1 Score: <span id="player-one-score"></span></p>
+    <p>Player 2 Score: <span id="player-two-score"></span></p>
+    <button id="reset-game">Reset Game</button>
     <script src="script.js"></script>
   </body>
 </html>
