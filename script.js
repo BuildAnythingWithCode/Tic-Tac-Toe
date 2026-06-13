@@ -108,33 +108,37 @@ function checkIfSomeoneWon() {
     playerTwoScoreEl.textContent = playerTwoScore;
     game.classList.remove('grid');
     game.classList.add('hidden');
+  } else {
+    return false;
   }
 }
 
 function checkForTie() {
-  if (
-    (cellOne.classList.contains('clicked-by-player-one') ||
-      cellOne.classList.contains('clicked-by-player-two')) &&
-    (cellTwo.classList.contains('clicked-by-player-one') ||
-      cellTwo.classList.contains('clicked-by-player-two')) &&
-    (cellThree.classList.contains('clicked-by-player-one') ||
-      cellThree.classList.contains('clicked-by-player-two')) &&
-    (cellFour.classList.contains('clicked-by-player-one') ||
-      cellFour.classList.contains('clicked-by-player-two')) &&
-    (cellFive.classList.contains('clicked-by-player-one') ||
-      cellFive.classList.contains('clicked-by-player-two')) &&
-    (cellSix.classList.contains('clicked-by-player-one') ||
-      cellSix.classList.contains('clicked-by-player-two')) &&
-    (cellSeven.classList.contains('clicked-by-player-one') ||
-      cellSeven.classList.contains('clicked-by-player-two')) &&
-    (cellEight.classList.contains('clicked-by-player-one') ||
-      cellEight.classList.contains('clicked-by-player-two')) &&
-    (cellNine.classList.contains('clicked-by-player-one') ||
-      cellNine.classList.contains('clicked-by-player-two'))
-  ) {
-    message.textContent = 'Tie!';
-    game.classList.remove('grid');
-    game.classList.add('hidden');
+  if (!checkIfSomeoneWon) {
+    if (
+      (cellOne.classList.contains('clicked-by-player-one') ||
+        cellOne.classList.contains('clicked-by-player-two')) &&
+      (cellTwo.classList.contains('clicked-by-player-one') ||
+        cellTwo.classList.contains('clicked-by-player-two')) &&
+      (cellThree.classList.contains('clicked-by-player-one') ||
+        cellThree.classList.contains('clicked-by-player-two')) &&
+      (cellFour.classList.contains('clicked-by-player-one') ||
+        cellFour.classList.contains('clicked-by-player-two')) &&
+      (cellFive.classList.contains('clicked-by-player-one') ||
+        cellFive.classList.contains('clicked-by-player-two')) &&
+      (cellSix.classList.contains('clicked-by-player-one') ||
+        cellSix.classList.contains('clicked-by-player-two')) &&
+      (cellSeven.classList.contains('clicked-by-player-one') ||
+        cellSeven.classList.contains('clicked-by-player-two')) &&
+      (cellEight.classList.contains('clicked-by-player-one') ||
+        cellEight.classList.contains('clicked-by-player-two')) &&
+      (cellNine.classList.contains('clicked-by-player-one') ||
+        cellNine.classList.contains('clicked-by-player-two'))
+    ) {
+      message.textContent = 'Tie!';
+      game.classList.remove('grid');
+      game.classList.add('hidden');
+    }
   }
 }
 
