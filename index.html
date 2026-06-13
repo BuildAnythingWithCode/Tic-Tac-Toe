@@ -9,7 +9,7 @@
   <body class="flex column center">
     <h1>Welcome to Tic Tac Toe!</h1>
     <h2>Take turns playing against each other.</h2>
-    <div id="grid">
+    <div class="game grid">
       <div class="cell cell-one"></div>
       <div class="cell cell-two"></div>
       <div class="cell cell-three"></div>
@@ -21,10 +21,11 @@
       <div class="cell cell-nine"></div>
     </div>
     <p>It is currently Player <span id="whos-turn-is-it">1</span>'s turn.</p>
-    <p id="message-section"></p>
-    <p>Player 1 Score: <span id="player-one-score"></span></p>
-    <p>Player 2 Score: <span id="player-two-score"></span></p>
-    <button id="reset-game">Reset Game</button>
+    <p id="message-section">Message Center</p>
+    <p>Player 1 Score: <span id="player-one-score">0</span></p>
+    <p>Player 2 Score: <span id="player-two-score">0</span></p>
+    <button id="new-game">New Game</button>
+    <button id="reset">Reset</button>
     <script src="script.js"></script>
   </body>
 </html>

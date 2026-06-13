@@ -39,9 +39,12 @@ p,
   align-items: center;
 }
 
-#grid {
-  margin: 3rem;
+.grid {
   display: grid;
+}
+
+.game {
+  margin: 3rem;
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(3, 100px);
   border: 1px solid black;
@@ -49,4 +52,16 @@ p,
 
 .cell {
   border: 1px solid black;
+}
+
+.clicked-by-player-one {
+  background-color: orange;
+}
+
+.clicked-by-player-two {
+  background-color: purple;
+}
+
+.hidden {
+  visibility: hidden;
 }
