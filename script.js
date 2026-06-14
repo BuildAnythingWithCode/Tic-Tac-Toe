@@ -33,12 +33,10 @@ function clickACell() {
       this.classList.add('clicked-by-player-one');
       currentPlayerTurn.textContent = '2';
       checkIfSomeoneWon();
-      checkForTie();
     } else {
       this.classList.add('clicked-by-player-two');
       currentPlayerTurn.textContent = '1';
       checkIfSomeoneWon();
-      checkForTie();
     }
   }
 }
@@ -103,42 +101,34 @@ function checkIfSomeoneWon() {
       cellSeven.classList.contains('clicked-by-player-two'))
   ) {
     message.textContent =
-      'Player 2 Wins! The score has been updated. Click "New Game" to play again, or "Reset" to reset.';
+      'Player 2 Wins! Click "New Game" to play again, or "Reset" to reset.';
     playerTwoScore++;
     playerTwoScoreEl.textContent = playerTwoScore;
     game.classList.remove('grid');
     game.classList.add('hidden');
-  } else {
-    return false;
-  }
-}
-
-function checkForTie() {
-  if (!checkIfSomeoneWon) {
-    if (
-      (cellOne.classList.contains('clicked-by-player-one') ||
-        cellOne.classList.contains('clicked-by-player-two')) &&
-      (cellTwo.classList.contains('clicked-by-player-one') ||
-        cellTwo.classList.contains('clicked-by-player-two')) &&
-      (cellThree.classList.contains('clicked-by-player-one') ||
-        cellThree.classList.contains('clicked-by-player-two')) &&
-      (cellFour.classList.contains('clicked-by-player-one') ||
-        cellFour.classList.contains('clicked-by-player-two')) &&
-      (cellFive.classList.contains('clicked-by-player-one') ||
-        cellFive.classList.contains('clicked-by-player-two')) &&
-      (cellSix.classList.contains('clicked-by-player-one') ||
-        cellSix.classList.contains('clicked-by-player-two')) &&
-      (cellSeven.classList.contains('clicked-by-player-one') ||
-        cellSeven.classList.contains('clicked-by-player-two')) &&
-      (cellEight.classList.contains('clicked-by-player-one') ||
-        cellEight.classList.contains('clicked-by-player-two')) &&
-      (cellNine.classList.contains('clicked-by-player-one') ||
-        cellNine.classList.contains('clicked-by-player-two'))
-    ) {
-      message.textContent = 'Tie!';
-      game.classList.remove('grid');
-      game.classList.add('hidden');
-    }
+  } else if (
+    (cellOne.classList.contains('clicked-by-player-one') ||
+      cellOne.classList.contains('clicked-by-player-two')) &&
+    (cellTwo.classList.contains('clicked-by-player-one') ||
+      cellTwo.classList.contains('clicked-by-player-two')) &&
+    (cellThree.classList.contains('clicked-by-player-one') ||
+      cellThree.classList.contains('clicked-by-player-two')) &&
+    (cellFour.classList.contains('clicked-by-player-one') ||
+      cellFour.classList.contains('clicked-by-player-two')) &&
+    (cellFive.classList.contains('clicked-by-player-one') ||
+      cellFive.classList.contains('clicked-by-player-two')) &&
+    (cellSix.classList.contains('clicked-by-player-one') ||
+      cellSix.classList.contains('clicked-by-player-two')) &&
+    (cellSeven.classList.contains('clicked-by-player-one') ||
+      cellSeven.classList.contains('clicked-by-player-two')) &&
+    (cellEight.classList.contains('clicked-by-player-one') ||
+      cellEight.classList.contains('clicked-by-player-two')) &&
+    (cellNine.classList.contains('clicked-by-player-one') ||
+      cellNine.classList.contains('clicked-by-player-two'))
+  ) {
+    message.textContent = 'Tie!';
+    game.classList.remove('grid');
+    game.classList.add('hidden');
   }
 }
 
@@ -163,7 +153,7 @@ function newGame() {
   cellNine.classList.remove('clicked-by-player-two');
   game.classList.remove('hidden');
   game.classList.add('grid');
-  message.textContent = 'Message Center';
+  message.textContent = '- Message Center -';
 }
 
 function reset() {
