@@ -8,30 +8,41 @@
   </head>
   <body class="flex column center">
     <h1>Welcome to Tic Tac Toe!</h1>
-    <h2>Take turns playing against each other.</h2>
-    <div class="game grid">
-      <div class="cell cell-one"></div>
-      <div class="cell cell-two"></div>
-      <div class="cell cell-three"></div>
-      <div class="cell cell-four"></div>
-      <div class="cell cell-five"></div>
-      <div class="cell cell-six"></div>
-      <div class="cell cell-seven"></div>
-      <div class="cell cell-eight"></div>
-      <div class="cell cell-nine"></div>
+    <h2>Enter your player names below and then click Start to play:</h2>
+    <form action="#" method="post">
+      <label for="player-one-name"> Player 1 Name: </label>
+      <input type="text" id="player-one-name" name="player-one-name" required />
+      <label for="player-two-name"> Player 2 Name: </label>
+      <input type="text" id="player-two-name" name="player-two-name" required />
+      <button type="button" id="start-game-btn">Start!</button>
+    </form>
+    <div class="entire-game-section">
+      <div class="game grid">
+        <div class="cell cell-one"></div>
+        <div class="cell cell-two"></div>
+        <div class="cell cell-three"></div>
+        <div class="cell cell-four"></div>
+        <div class="cell cell-five"></div>
+        <div class="cell cell-six"></div>
+        <div class="cell cell-seven"></div>
+        <div class="cell cell-eight"></div>
+        <div class="cell cell-nine"></div>
+      </div>
+      <p class="orange"><span class="player-one"></span> is ORANGE!</p>
+      <p class="purple"><span class="player-two"></span> is PURPLE!</p>
+      <p>It is currently Player <span id="whos-turn-is-it">1</span>'s turn.</p>
+      <p id="message-section">- Message Center -</p>
+      <p class="orange">
+        <span class="player-one"></span> Score:
+        <span id="player-one-score" class="orange">0</span>
+      </p>
+      <p class="purple">
+        <span class="player-two"></span> Score:
+        <span id="player-two-score" class="purple">0</span>
+      </p>
+      <button id="new-game">New Game</button>
+      <button id="reset">Reset</button>
     </div>
-    <p class="orange">Player 1 is ORANGE!</p>
-    <p class="purple">Player 2 is PURPLE!</p>
-    <p>It is currently Player <span id="whos-turn-is-it">1</span>'s turn.</p>
-    <p id="message-section">- Message Center -</p>
-    <p class="orange">
-      Player 1 Score: <span id="player-one-score" class="orange">0</span>
-    </p>
-    <p class="purple">
-      Player 2 Score: <span id="player-two-score" class="purple">0</span>
-    </p>
-    <button id="new-game">New Game</button>
-    <button id="reset">Reset</button>
     <script src="script.js"></script>
   </body>
 </html>

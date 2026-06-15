@@ -18,6 +18,32 @@ const playerOneScoreEl = document.querySelector('#player-one-score');
 const playerTwoScoreEl = document.querySelector('#player-two-score');
 const newGameBtn = document.querySelector('#new-game');
 const resetBtn = document.querySelector('#reset');
+const startGameBtn = document.querySelector('#start-game-btn');
+const playerOneName = document.querySelector('#player-one-name');
+const playerTwoName = document.querySelector('#player-two-name');
+const displayPlayerOneName = document.querySelectorAll('.player-one');
+const displayPlayerTwoName = document.querySelectorAll('.player-two');
+const form = document.querySelector('form');
+
+function hideForm() {
+  form.classList.add('hidden');
+}
+
+function showForm() {
+  form.classList.remove('hidden');
+}
+
+function startGame() {
+  displayPlayerOneName.forEach((el) => {
+    el.textContent = playerOneName.value;
+  });
+  displayPlayerTwoName.forEach((el) => {
+    el.textContent = playerTwoName.value;
+  });
+  hideForm();
+}
+
+startGameBtn.addEventListener('click', startGame);
 
 let playerOneScore = 0;
 let playerTwoScore = 0;
@@ -104,6 +130,7 @@ function checkIfSomeoneWon() {
       'Player 2 Wins! Click "New Game" to play again, or "Reset" to reset.';
     playerTwoScore++;
     playerTwoScoreEl.textContent = playerTwoScore;
+
     game.classList.remove('grid');
     game.classList.add('hidden');
   } else if (
@@ -163,6 +190,16 @@ function reset() {
   playerOneScoreEl.textContent = 0;
   playerTwoScoreEl.textContent = 0;
   currentPlayerTurn.textContent = '1';
+  displayPlayerOneName.textContent = '';
+  displayPlayerTwoName.textContent = '';
+  displayPlayerOneName.forEach((el) => {
+    el.textContent = '';
+  });
+  displayPlayerTwoName.forEach((el) => {
+    el.textContent = '';
+  });
+  form.reset();
+  showForm();
 }
 
 cellOne.addEventListener('click', clickACell);
