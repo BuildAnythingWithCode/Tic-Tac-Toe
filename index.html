@@ -16,7 +16,7 @@
       <input type="text" id="player-two-name" name="player-two-name" required />
       <button type="button" id="start-game-btn">Start!</button>
     </form>
-    <div class="entire-game-section">
+    <div class="entire-game-section hidden">
       <div class="game grid">
         <div class="cell cell-one"></div>
         <div class="cell cell-two"></div>
@@ -28,17 +28,21 @@
         <div class="cell cell-eight"></div>
         <div class="cell cell-nine"></div>
       </div>
-      <p class="orange"><span class="player-one"></span> is ORANGE!</p>
-      <p class="purple"><span class="player-two"></span> is PURPLE!</p>
+      <p class="orange">
+        <span class="player-one"></span> (Player 1) is ORANGE!
+      </p>
+      <p class="purple">
+        <span class="player-two"></span> (Player 2) is PURPLE!
+      </p>
       <p>It is currently Player <span id="whos-turn-is-it">1</span>'s turn.</p>
       <p id="message-section">- Message Center -</p>
       <p class="orange">
         <span class="player-one"></span> Score:
-        <span id="player-one-score" class="orange">0</span>
+        <span id="player-one-score-display" class="orange">0</span>
       </p>
       <p class="purple">
         <span class="player-two"></span> Score:
-        <span id="player-two-score" class="purple">0</span>
+        <span id="player-two-score-display" class="purple">0</span>
       </p>
       <button id="new-game">New Game</button>
       <button id="reset">Reset</button>

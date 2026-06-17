@@ -1,7 +1,33 @@
 'use strict';
 
+// Players
+const playerOne = {
+  name: document.querySelector('#player-one-name'),
+  color: 'purple',
+  score: 0,
+};
+
+const playerTwo = {
+  name: document.querySelector('#player-two-name'),
+  color: 'orange',
+  score: 0,
+};
+
+// Buttons
+const button = {
+  newGame: document.querySelector('#new-game'),
+  reset: document.querySelector('#reset'),
+  startGame: document.querySelector('#start-game-btn'),
+};
+
+// Form
+const form = document.querySelector('form');
+
+// Game Section
+const entireGameSection = document.querySelector('.entire-game-section');
 const game = document.querySelector('.game');
 
+// Game Grid Cells
 const cellOne = document.querySelector('.cell-one');
 const cellTwo = document.querySelector('.cell-two');
 const cellThree = document.querySelector('.cell-three');
@@ -12,18 +38,17 @@ const cellSeven = document.querySelector('.cell-seven');
 const cellEight = document.querySelector('.cell-eight');
 const cellNine = document.querySelector('.cell-nine');
 
+// Game Information
 const currentPlayerTurn = document.querySelector('#whos-turn-is-it');
 const message = document.querySelector('#message-section');
-const playerOneScoreEl = document.querySelector('#player-one-score');
-const playerTwoScoreEl = document.querySelector('#player-two-score');
-const newGameBtn = document.querySelector('#new-game');
-const resetBtn = document.querySelector('#reset');
-const startGameBtn = document.querySelector('#start-game-btn');
-const playerOneName = document.querySelector('#player-one-name');
-const playerTwoName = document.querySelector('#player-two-name');
-const displayPlayerOneName = document.querySelectorAll('.player-one');
-const displayPlayerTwoName = document.querySelectorAll('.player-two');
-const form = document.querySelector('form');
+const playerOneScoreDisplay = document.querySelector(
+  '#player-one-score-display',
+);
+const playerTwoScoreDisplay = document.querySelector(
+  '#player-two-score-display',
+);
+
+// Functions
 
 function hideForm() {
   form.classList.add('hidden');
@@ -33,20 +58,50 @@ function showForm() {
   form.classList.remove('hidden');
 }
 
-function startGame() {
-  displayPlayerOneName.forEach((el) => {
-    el.textContent = playerOneName.value;
-  });
-  displayPlayerTwoName.forEach((el) => {
-    el.textContent = playerTwoName.value;
-  });
-  hideForm();
+function showEntireGameSection() {
+  entireGameSection.classList.remove('hidden');
 }
 
-startGameBtn.addEventListener('click', startGame);
+function hideEntireGameSection() {
+  entireGameSection.classList.add('hidden');
+}
 
-let playerOneScore = 0;
-let playerTwoScore = 0;
+function showGame() {
+  game.classList.remove('hidden');
+  game.classList.add('grid');
+}
+
+function hideGame() {
+  game.classList.remove('grid');
+  game.classList.add('hidden');
+}
+
+function updateNames() {
+  document.querySelectorAll('.player-one').forEach((el) => {
+    el.textContent = playerOne.name.value;
+  });
+  document.querySelectorAll('.player-two').forEach((el) => {
+    el.textContent = playerTwo.name.value;
+  });
+}
+
+function startGame() {
+  if (playerOne.name.value.length === 0 && playerTwo.name.value.length === 0) {
+    const errorEmptyName = document.createElement('p');
+    form.appendChild(errorEmptyName);
+    errorEmptyName.textContent = 'Enter a name for both players, dummy!';
+  } else if (playerOne.name.value === playerTwo.name.value) {
+    const errorSameName = document.createElement('p');
+    form.appendChild(errorSameName);
+    errorSameName.textContent =
+      'Choose a different name for each player, dummy!';
+  } else {
+    showEntireGameSection();
+    updateNames();
+    form.reset();
+    hideForm();
+  }
+}
 
 function clickACell() {
   if (
@@ -96,10 +151,9 @@ function checkIfSomeoneWon() {
   ) {
     message.textContent =
       'Player 1 Wins! The score has been updated. Click "New Game" to play again, or "Reset" to reset.';
-    playerOneScore++;
-    playerOneScoreEl.textContent = playerOneScore;
-    game.classList.remove('grid');
-    game.classList.add('hidden');
+    playerOne.score++;
+    playerOneScoreDisplay.textContent = playerOne.score;
+    hideGame();
   } else if (
     (cellOne.classList.contains('clicked-by-player-two') &&
       cellTwo.classList.contains('clicked-by-player-two') &&
@@ -128,11 +182,9 @@ function checkIfSomeoneWon() {
   ) {
     message.textContent =
       'Player 2 Wins! Click "New Game" to play again, or "Reset" to reset.';
-    playerTwoScore++;
-    playerTwoScoreEl.textContent = playerTwoScore;
-
-    game.classList.remove('grid');
-    game.classList.add('hidden');
+    playerTwo.score++;
+    playerTwoScoreDisplay.textContent = playerTwo.score;
+    hideGame();
   } else if (
     (cellOne.classList.contains('clicked-by-player-one') ||
       cellOne.classList.contains('clicked-by-player-two')) &&
@@ -154,8 +206,7 @@ function checkIfSomeoneWon() {
       cellNine.classList.contains('clicked-by-player-two'))
   ) {
     message.textContent = 'Tie!';
-    game.classList.remove('grid');
-    game.classList.add('hidden');
+    hideGame();
   }
 }
 
@@ -178,29 +229,26 @@ function newGame() {
   cellEight.classList.remove('clicked-by-player-two');
   cellNine.classList.remove('clicked-by-player-one');
   cellNine.classList.remove('clicked-by-player-two');
-  game.classList.remove('hidden');
-  game.classList.add('grid');
+  showGame();
   message.textContent = '- Message Center -';
 }
 
 function reset() {
   newGame();
-  playerOneScore = 0;
-  playerTwoScore = 0;
-  playerOneScoreEl.textContent = 0;
-  playerTwoScoreEl.textContent = 0;
+  playerOne.score = 0;
+  playerTwo.score = 0;
+  playerOneScoreDisplay.textContent = playerOne.score;
+  playerTwoScoreDisplay.textContent = playerTwo.score;
   currentPlayerTurn.textContent = '1';
-  displayPlayerOneName.textContent = '';
-  displayPlayerTwoName.textContent = '';
-  displayPlayerOneName.forEach((el) => {
-    el.textContent = '';
-  });
-  displayPlayerTwoName.forEach((el) => {
-    el.textContent = '';
-  });
-  form.reset();
+  updateNames();
   showForm();
+  hideEntireGameSection();
 }
+
+// Event Handlers
+button.startGame.addEventListener('click', startGame);
+button.newGame.addEventListener('click', newGame);
+button.reset.addEventListener('click', reset);
 
 cellOne.addEventListener('click', clickACell);
 cellTwo.addEventListener('click', clickACell);
@@ -211,6 +259,3 @@ cellSix.addEventListener('click', clickACell);
 cellSeven.addEventListener('click', clickACell);
 cellEight.addEventListener('click', clickACell);
 cellNine.addEventListener('click', clickACell);
-
-newGameBtn.addEventListener('click', newGame);
-resetBtn.addEventListener('click', reset);
