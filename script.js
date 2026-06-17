@@ -102,11 +102,6 @@ function updateNames() {
   });
 }
 
-// function removeAnyErrorMessages() {
-//   errorEmptyName.remove();
-//   errorSameName.remove();
-// }
-
 function startGame() {
   if (playerOne.name.value.length === 0 || playerTwo.name.value.length === 0) {
     showEmptyNameError();
@@ -260,7 +255,6 @@ function reset() {
   playerTwoScoreDisplay.textContent = playerTwo.score;
   currentPlayerTurn.textContent = '1';
   updateNames();
-  // removeAnyErrorMessages();
   showForm();
   hideEntireGameSection();
   hideEmptyNameError();
