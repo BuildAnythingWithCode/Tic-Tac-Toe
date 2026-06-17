@@ -20,8 +20,10 @@ const button = {
   startGame: document.querySelector('#start-game-btn'),
 };
 
-// Form
+// Form & Error Messages
 const form = document.querySelector('form');
+const errorEmptyName = document.querySelector('.error-empty-name');
+const errorSameName = document.querySelector('.error-same-name');
 
 // Game Section
 const entireGameSection = document.querySelector('.entire-game-section');
@@ -49,7 +51,6 @@ const playerTwoScoreDisplay = document.querySelector(
 );
 
 // Functions
-
 function hideForm() {
   form.classList.add('hidden');
 }
@@ -76,6 +77,22 @@ function hideGame() {
   game.classList.add('hidden');
 }
 
+function showEmptyNameError() {
+  errorEmptyName.classList.remove('hidden');
+}
+
+function hideEmptyNameError() {
+  errorEmptyName.classList.add('hidden');
+}
+
+function showSameNameError() {
+  errorSameName.classList.remove('hidden');
+}
+
+function hideSameNameError() {
+  errorSameName.classList.add('hidden');
+}
+
 function updateNames() {
   document.querySelectorAll('.player-one').forEach((el) => {
     el.textContent = playerOne.name.value;
@@ -85,21 +102,23 @@ function updateNames() {
   });
 }
 
+// function removeAnyErrorMessages() {
+//   errorEmptyName.remove();
+//   errorSameName.remove();
+// }
+
 function startGame() {
-  if (playerOne.name.value.length === 0 && playerTwo.name.value.length === 0) {
-    const errorEmptyName = document.createElement('p');
-    form.appendChild(errorEmptyName);
-    errorEmptyName.textContent = 'Enter a name for both players, dummy!';
+  if (playerOne.name.value.length === 0 || playerTwo.name.value.length === 0) {
+    showEmptyNameError();
   } else if (playerOne.name.value === playerTwo.name.value) {
-    const errorSameName = document.createElement('p');
-    form.appendChild(errorSameName);
-    errorSameName.textContent =
-      'Choose a different name for each player, dummy!';
+    showSameNameError();
   } else {
     showEntireGameSection();
     updateNames();
     form.reset();
     hideForm();
+    hideEmptyNameError();
+    hideSameNameError();
   }
 }
 
@@ -241,15 +260,17 @@ function reset() {
   playerTwoScoreDisplay.textContent = playerTwo.score;
   currentPlayerTurn.textContent = '1';
   updateNames();
+  // removeAnyErrorMessages();
   showForm();
   hideEntireGameSection();
+  hideEmptyNameError();
+  hideSameNameError();
 }
 
 // Event Handlers
 button.startGame.addEventListener('click', startGame);
 button.newGame.addEventListener('click', newGame);
 button.reset.addEventListener('click', reset);
-
 cellOne.addEventListener('click', clickACell);
 cellTwo.addEventListener('click', clickACell);
 cellThree.addEventListener('click', clickACell);
